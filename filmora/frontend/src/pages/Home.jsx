@@ -6,12 +6,15 @@ import Loading from '../components/Loading';
 
 export default function Home() {
 
-
-
-
   return (
     <div>
-        <h1 className="text-3xl font-bold mb-4">Filmes</h1>
+      <SearchBar />
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        {/* <MovieCard />
+        <MovieCard />
+        <MovieCard /> */}
+      </div>
     </div>
   );
 }
