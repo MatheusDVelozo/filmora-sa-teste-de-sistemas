@@ -22,6 +22,7 @@ export default function AppRoutes() {
           <Route path="/filmes/editar/:id" element={<MovieForm edit />} />
 
           <Route path="/filmes/:id" element={<MovieDetails />} />
+          <Route path="/filmesDetalhes" element={<MovieDetails />} />
 
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
