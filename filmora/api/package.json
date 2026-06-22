@@ -5,19 +5,24 @@
   "description": "To install dependencies:",
   "main": "app.js",
   "dependencies": {
-    "bun-types": "^1.3.9",
+    "bcrypt": "^5.1.0",
     "cors": "^2.8.6",
     "dotenv": "^17.3.1",
     "express": "^5.2.1",
-    "mysql2": "^3.17.5",
-    "typescript": "^5.9.3",
-    "undici-types": "^7.18.2"
+    "jsonwebtoken": "^9.0.0",
+    "pg": "^8.11.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node app.js --watch"
+    "teste": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "dev": "node app.js",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^30.4.2",
+    "supertest": "^7.2.2"
+  }
 }

@@ -7,7 +7,8 @@ import Profile from '../pages/Profile';
 import MovieDetails from '../pages/MovieDetails';
 import MovieForm from '../pages/MovieForm';
 import Layout from '../layouts/Layout';
-// falta implementar ProtectedRoute e AdminRoute //
+import ProtectedRoute from '../components/ProtectedRoute';
+import AdminRoute from '../components/AdminRoute';
 
 export default function AppRoutes() {
   return (
@@ -17,9 +18,9 @@ export default function AppRoutes() {
           <Route path="/login" element={<Login />} />
           <Route path="/cadastro" element={<Register />} />
 
-          <Route path="/perfil" element={<Profile />} />
-          <Route path="/filmes/novo" element={<MovieForm />} />
-          <Route path="/filmes/editar/:id" element={<MovieForm edit />} />
+          <Route path="/perfil" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+          <Route path="/filmes/novo" element={<ProtectedRoute><AdminRoute><MovieForm /></AdminRoute></ProtectedRoute>} />
+          <Route path="/filmes/editar/:id" element={<ProtectedRoute><AdminRoute><MovieForm edit /></AdminRoute></ProtectedRoute>} />
 
           <Route path="/filmes/:id" element={<MovieDetails />} />
 

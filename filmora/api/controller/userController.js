@@ -1,62 +1,64 @@
-import { pool } from "../db/db.js";
-import { validateUser } from "../services/userServices.js";
+import * as userServices from '../services/userServices.js';
 
-export const getAllUsers = async (req, res) => {
+export const getUsers = async (req, res) => {
   try {
-    const [rows] = await pool.query("SELECT * FROM users");
-    res.json(rows);
+    const users = await userServices.listUsers();
+    res.json(users);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ error: 'Internal server error' });
   }
 };
 
+export const getUserById = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const user = await userServices.findUserById(id);
+    if (!user) return res.status(404).json({ error: 'Usuário não encontrado' });
+    res.json(user);
+  } catch (err) {
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
 
 export const createUser = async (req, res) => {
   try {
-    validateUser(req.body);
+    const { nome, email, senha } = req.body;
+    if (!email) return res.status(400).json({ error: 'Email é obrigatório' });
+    if (!senha || senha.length < 6) return res.status(400).json({ error: 'Senha deve ter ao menos 6 caracteres' });
 
-    const { name, email, password } = req.body;
+    const existing = await userServices.findUserByEmail(email);
+    if (existing) return res.status(400).json({ error: 'Email já existe' });
 
-    const query = "INSERT INTO users (name, email, password) VALUES (?, ?, ?)";
-    const [result] = await pool.query(query, [name, email, password]);
-
-    res.status(201).json({ id: result.insertId, name, email });
+    const user = await userServices.createUser({ nome, email, senha });
+    res.status(201).json(user);
   } catch (err) {
-    res.status(400).json({ error: err.message });
-  }
-};
-
-export const deleteUser = async (req, res) => {
-  const { id } = req.params;
-  try {
-    const [result] = await pool.query("DELETE FROM users WHERE id = ?", [id]);
-
-    if (result.affectedRows === 0) {
-      return res.status(404).json({ error: "Usuario não encontrado" });
-    }
-
-    res.json({ message: "Usuario excluído com sucesso" });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ error: 'Internal server error' });
   }
 };
 
 export const updateUser = async (req, res) => {
   const { id } = req.params;
   try {
-    validateUser(req.body);
+    const { nome, email, senha } = req.body;
+    if (!email) return res.status(400).json({ error: 'Email é obrigatório' });
+    if (senha && senha.length < 6) return res.status(400).json({ error: 'Senha deve ter ao menos 6 caracteres' });
 
-    const { name, email, password } = req.body;
+    const existing = await userServices.findUserByEmail(email);
+    if (existing && existing.id !== Number(id)) return res.status(400).json({ error: 'Email já existe' });
 
-    const query = "UPDATE users SET name = ?, email = ?, password = ? WHERE id = ?";
-    const [result] = await pool.query(query, [name, email, password, id]);
-
-    if (result.affectedRows === 0) {
-      return res.status(404).json({ error: "Usuario não encontrado" });
-    }
-
-    res.json({ message: "Usuario atualizado com sucesso" });
+    const user = await userServices.updateUser(id, { nome, email, senha });
+    res.json(user);
   } catch (err) {
-    res.status(400).json({ error: err.message });
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
+export const deleteUser = async (req, res) => {
+  const { id } = req.params;
+  try {
+    await userServices.deleteUser(id);
+    res.json({ message: 'Usuário deletado' });
+  } catch (err) {
+    res.status(500).json({ error: 'Internal server error' });
   }
 };

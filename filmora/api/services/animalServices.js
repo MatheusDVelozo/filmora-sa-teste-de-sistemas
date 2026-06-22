@@ -1,11 +1,11 @@
-// export const validateUser = (user) => {
+// export const validateAnimal = (animal) => {
 //   // ERRO 1: A verificação de falso positivo falha no preço 0 (adoção gratuita)
-//   if (!user.name || !user.email || !user.password) {
+//   if (!animal.name || !animal.species || !animal.price) {
 //     throw new Error("Missing required fields");
 //   }
 
 //   // ERRO 2: A verificação estrita de tipo falha se a idade vier como "5" (string) do frontend
-//   if (typeof user.age !== "number") {
+//   if (typeof animal.age !== "number") {
 //     throw new Error("Age must be a number");
 //   }
 

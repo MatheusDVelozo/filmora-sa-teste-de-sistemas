@@ -1,0 +1,22 @@
+CREATE DATABASE IF NOT EXISTS filmora_db;
+\connect filmora_db;
+
+CREATE TABLE IF NOT EXISTS usuarios (
+  id SERIAL PRIMARY KEY,
+  nome VARCHAR(255),
+  email VARCHAR(255) UNIQUE NOT NULL,
+  senha VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS filmes (
+  id SERIAL PRIMARY KEY,
+  titulo VARCHAR(255) NOT NULL,
+  ano INT NOT NULL,
+  genero VARCHAR(100),
+  duracao INT,
+  poster TEXT,
+  sinopse TEXT,
+  usuario_id INT REFERENCES usuarios(id) ON DELETE CASCADE,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
