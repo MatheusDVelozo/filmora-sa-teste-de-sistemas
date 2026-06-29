@@ -1,3 +1,49 @@
+ESTRUTURA DO PROJETO
+
+projeto/
+├── api/
+│   ├── middlewares/
+│   ├── services/
+│   ├── tests/
+│   │   ├── Filmes/
+│   │   └── Usuario/
+│   ├── .gitignore
+│   ├── app.js
+│   ├── bun.lock
+│   ├── database_postgres.sql
+│   ├── database.sql
+│   ├── docker-compose.yml
+│   ├── jest.config.js
+│   ├── package-lock.json
+│   ├── package.json
+│   └── README.md
+│
+├── Docs/
+│
+├── frontend/
+│   ├── public/
+│   ├── src/
+│   ├── test-results/
+│   ├── tests/
+│   │   ├── e2e/
+│   │   ├── api.test.js
+│   │   └── validators.test.js
+│   ├── .gitignore
+│   ├── bun.lock
+│   ├── eslint.config.js
+│   ├── index.html
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── playwright.config.js
+│   ├── README.md
+│   └── vite.config.js
+│
+├── .gitignore
+├── Documentação.txt
+└── package-lock.json
+
+
+
 REQUISITOS FUNCIONAIS
 
 | ID   | Requisito                       | Descrição                                                                      |
@@ -43,6 +89,25 @@ CASOS DE TESTE
 
 
 
+DEPENDENCIAS DE PRODUÇÃO
+
+| Ferramenta | Versão | Descrição |
+|-------------|---------|-----------|
+| Node.js | LTS (18+) | Runtime JavaScript do servidor |
+| npm | 8.0+ | Gerenciador de pacotes |
+| Express | ^5.2.1 | Framework web minimalista |
+| PostgreSQL | 12+ | Banco de dados relacional |
+| pg | ^8.20.0 | Driver Node.js para PostgreSQL |
+| dotenv | ^17.3.1 | Variáveis de ambiente |
+| CORS | ^2.8.6 | Controle de requisições cross-origin |
+
+
+
+DEPENDENCIA DE DESENVOLVIMENTO
+
+| Ferramenta | Versão | Descrição |
+|-------------|---------|-----------|
+| Jest | ^30.2.0 | Framework de testes unitários |
 
 
 

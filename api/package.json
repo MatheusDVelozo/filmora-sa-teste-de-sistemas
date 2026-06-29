@@ -13,16 +13,10 @@
     "pg": "^8.11.0"
   },
   "scripts": {
-<<<<<<< HEAD
     "teste": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
     "dev": "node app.js",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
-=======
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js",
-    "dev": "node app.js"
->>>>>>> fce716223203c4340a13e6a1510970d89b876f72
   },
   "keywords": [],
   "author": "",
