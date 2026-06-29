@@ -19,4 +19,8 @@ CREATE TABLE IF NOT EXISTS filmes (
   sinopse TEXT,
   usuario_id INT REFERENCES usuarios(id) ON DELETE CASCADE,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+<<<<<<< HEAD
 );
+=======
+);
+>>>>>>> fce716223203c4340a13e6a1510970d89b876f72

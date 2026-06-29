@@ -1,0 +1,49 @@
+REQUISITOS FUNCIONAIS
+
+| ID   | Requisito                       | Descrição                                                                      |
+| ---- | ------------------------------- | ------------------------------------------------------------------------------ |
+| RF01 | Cadastro de Usuário             | Permite que qualquer pessoa crie uma conta na plataforma.                      |
+| RF02 | Login                           | Permite autenticação de usuários cadastrados.                                  |
+| RF03 | Pesquisa de Filmes              | Permite pesquisar filmes cadastrados na plataforma sem necessidade de login.   |
+| RF04 | Visualizar Informações do Filme | Permite visualizar os detalhes completos de um filme sem necessidade de login. |
+| RF05 | Cadastro de Filme               | Permite que o administrador (admin@admin) cadastre novos filmes.               |
+| RF06 | Editar Filme                    | Permite que o administrador (admin@admin) altere informações de filmes.        |
+| RF07 | Excluir Filme                   | Permite que o administrador (admin@admin) remova filmes da plataforma.         |
+| RF08 | Editar Perfil                   | Permite que usuários alterem seu nome e email.                                 |
+| RF09 | Excluir Conta                   | Permite que usuários removam sua própria conta da plataforma.                  |
+| RF10 | Controle Administrativo         | Restringe cadastro, edição e exclusão de filmes apenas ao administrador.       |
+
+
+
+CASOS DE TESTE
+
+| ID Caso de Teste | ID Requisito | Descrição do Caso de Teste                                        | Pré-condições                                           | Passos para Execução                                                                                           | Resultado Esperado                                                    |
+| ---------------- | ------------ | ----------------------------------------------------------------- | ------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| CT001            | RF01         | Cadastrar usuário com dados válidos                               | Nenhuma                                                 | 1- Acessar tela de cadastro.<br>2. Informar nome, email e senha válidos.<br>3. Confirmar cadastro.             | Usuário cadastrado com sucesso.                                       |
+| CT002            | RF01         | Cadastrar usuário com email já existente                          | Usuário previamente cadastrado                          | 1. Acessar tela de cadastro.<br>2. Informar email já cadastrado.<br>3. Confirmar cadastro.                     | Sistema exibe mensagem de erro informando que o email já está em uso. |
+| CT003            | RF02         | Realizar login com credenciais válidas                            | Usuário cadastrado                                      | 1. Acessar tela de login.<br>2. Informar email e senha corretos.<br>3. Clicar em Entrar.                       | Usuário autenticado com sucesso.                                      |
+| CT004            | RF02         | Realizar login com senha incorreta                                | Usuário cadastrado                                      | 1. Acessar tela de login.<br>2. Informar email válido.<br>3. Informar senha incorreta.<br>4. Clicar em Entrar. | Sistema exibe mensagem de erro e não realiza login.                   |
+| CT005            | RF03         | Pesquisar filme existente                                         | Pelo menos um filme cadastrado                          | 1. Acessar a pesquisa.<br>2. Informar o nome de um filme existente.<br>3. Executar pesquisa.                   | Sistema exibe os filmes correspondentes à pesquisa.                   |
+| CT006            | RF03         | Pesquisar filme inexistente                                       | Nenhuma                                                 | 1. Acessar a pesquisa.<br>2. Informar um nome inexistente.<br>3. Executar pesquisa.                            | Sistema informa que nenhum filme foi encontrado.                      |
+| CT007            | RF04         | Visualizar informações de filme existente                         | Filme cadastrado                                        | 1. Acessar a listagem ou pesquisa.<br>2. Selecionar um filme.                                                  | Sistema exibe todas as informações do filme selecionado.              |
+| CT008            | RF04         | Visualizar filme inexistente                                      | Filme removido ou ID inválido                           | 1. Acessar diretamente a URL de um filme inexistente.                                                          | Sistema informa que o filme não foi encontrado.                       |
+| CT009            | RF05         | Verificar exibição do botão "Adicionar Filme" para administrador  | Usuário logado com email admin@admin                    | 1. Realizar login como administrador.<br>2. Acessar a página principal.                                        | Botão "Adicionar Filme" é exibido.                                    |
+| CT010            | RF05         | Verificar ocultação do botão "Adicionar Filme" para usuário comum | Usuário comum autenticado                               | 1. Realizar login como usuário comum.<br>2. Acessar a página principal.                                        | Botão "Adicionar Filme" não é exibido.                                |
+| CT011            | RF05         | Cadastrar filme como administrador                                | Usuário logado com email admin@admin                    | 1. Clicar em "Adicionar Filme".<br>2. Preencher os dados do filme.<br>3. Salvar.                               | Filme cadastrado com sucesso.                                         |
+| CT012            | RF06         | Verificar exibição do botão "Editar Filme" para administrador     | Usuário logado com email admin@admin                    | 1. Realizar login como administrador.<br>2. Acessar um filme cadastrado.                                       | Botão "Editar Filme" é exibido.                                       |
+| CT013            | RF06         | Verificar ocultação do botão "Editar Filme" para usuário comum    | Usuário comum autenticado                               | 1. Realizar login como usuário comum.<br>2. Acessar um filme cadastrado.                                       | Botão "Editar Filme" não é exibido.                                   |
+| CT014            | RF06         | Editar filme como administrador                                   | Usuário logado com email admin@admin e filme cadastrado | 1. Clicar em "Editar Filme".<br>2. Alterar informações.<br>3. Salvar alterações.                               | Informações do filme são atualizadas com sucesso.                     |
+| CT015            | RF07         | Verificar exibição do botão "Excluir Filme" para administrador    | Usuário logado com email admin@admin                    | 1. Realizar login como administrador.<br>2. Acessar um filme cadastrado.                                       | Botão "Excluir Filme" é exibido.                                      |
+| CT016            | RF07         | Verificar ocultação do botão "Excluir Filme" para usuário comum   | Usuário comum autenticado                               | 1. Realizar login como usuário comum.<br>2. Acessar um filme cadastrado.                                       | Botão "Excluir Filme" não é exibido.                                  |
+| CT017            | RF07         | Excluir filme como administrador                                  | Usuário logado com email admin@admin e filme cadastrado | 1. Clicar em "Excluir Filme".<br>2. Confirmar exclusão.                                                        | Filme removido com sucesso da plataforma.                             |
+| CT018            | RF08         | Editar perfil com dados válidos                                   | Usuário autenticado                                     | 1. Acessar perfil.<br>2. Alterar nome e/ou email.<br>3. Salvar alterações.                                     | Dados do usuário são atualizados com sucesso.                         |
+| CT019            | RF08         | Editar perfil utilizando email já cadastrado                      | Usuário autenticado                                     | 1. Acessar perfil.<br>2. Informar email já utilizado por outro usuário.<br>3. Salvar alterações.               | Sistema exibe mensagem de erro e não salva as alterações.             |
+| CT020            | RF09         | Excluir a própria conta                                           | Usuário autenticado                                     | 1. Acessar perfil.<br>2. Selecionar opção "Excluir Conta".<br>3. Confirmar exclusão.                           | Conta é removida do sistema com sucesso.                              |
+| CT021            | RF09         | Cancelar exclusão da conta                                        | Usuário autenticado                                     | 1. Acessar perfil.<br>2. Selecionar opção "Excluir Conta".<br>3. Cancelar operação.                            | Conta permanece ativa no sistema.                                     |
+
+
+
+
+
+
+
